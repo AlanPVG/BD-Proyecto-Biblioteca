@@ -5,6 +5,8 @@ CREATE OR REPLACE PROCEDURE spAltaEjemplar(
 	vIdMat ejemplar.idMaterial%TYPE,
 	vEstatus ejemplar.estatus%TYPE
 )
+--Comentario de prueba
+
 AS
 BEGIN
 	INSERT INTO ejemplar
