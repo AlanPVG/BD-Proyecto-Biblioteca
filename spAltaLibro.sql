@@ -2,7 +2,6 @@
 
 CREATE OR REPLACE PROCEDURE spAltaLibro(
       vIdMaterial IN libro.idMaterial%TYPE,
-      vNumAdqui IN libro.numAdqui%TYPE,
       vISBN IN libro.isbn%TYPE,
       vEdicion IN libro.edicion%TYPE
 )
@@ -11,7 +10,7 @@ AS
 BEGIN
 
       INSERT INTO libro (idMaterial,numAdqui,isbn,edicion)
-      VALUES (vIdMaterial, vNumAdqui, vISBN, vEdicion);
+      VALUES (vIdMaterial, num_Adqui.nextval, vISBN, vEdicion);
 
 END spAltaLibro;
 /
