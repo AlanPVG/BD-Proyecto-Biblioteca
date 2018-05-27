@@ -5,7 +5,7 @@ BEFORE INSERT ON libro
 FOR EACH ROW
 
 DECLARE
-
+vTipoMat tipoMaterial.tipoMaterial%TYPE;
 
 BEGIN
       
