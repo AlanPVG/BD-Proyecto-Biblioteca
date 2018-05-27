@@ -16,12 +16,6 @@ BEGIN
       WHERE idMaterial = vIdMat
       AND numEjemplar = vNumEjemp;
       
-      SELECT fechaPrestamo
-      INTO vFechaPrest
-      FROM prestamo
-      WHERE idMaterial = vIdMat
-      AND numEjemplar = vNumEjemp;
-      
       INSERT INTO devuelveEjem(idLector,idMaterial,numEjemplar,fechaDevolucion)
       VALUES(vIdLect, vIdMat, vNumEjemp, vFechaDev);
           
