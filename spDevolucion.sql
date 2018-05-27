@@ -7,7 +7,6 @@ CREATE OR REPLACE PROCEDURE spDevolucion(
 )
 
 AS
-      vFechaPrest prestamo.fechaPrestamo%TYPE;
       vIdLect prestamo.idLector%TYPE;
 BEGIN
 
