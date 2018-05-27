@@ -95,7 +95,7 @@ CREATE TABLE libro(
 	isbn NUMBER(13) NOT NULL,
 	edicion NUMBER(2) NOT NULL,
 	CONSTRAINT FK_idMaterial2 FOREIGN KEY (idMaterial)
-	REFERENCES material ON DELETE CASCADE
+	REFERENCES tipoMaterial ON DELETE CASCADE
 );
 
 --===============================================================
@@ -108,7 +108,7 @@ CREATE TABLE tesis(
 	carrera VARCHAR2(30) NOT NULL,
 	idDirector NUMBER(3) NOT NULL,
 	CONSTRAINT FK_idMaterial3 FOREIGN KEY (idMaterial)
-	REFERENCES material ON DELETE CASCADE,
+	REFERENCES tipoMaterial ON DELETE CASCADE,
 	CONSTRAINT FK_idDirector FOREIGN KEY (idDirector)
 	REFERENCES directorTesis
 );
