@@ -6,7 +6,7 @@ Se recomienda dedicar un esquema únicamente para este proyecto, por lo que la c
 Instrucciones para la creación de usuario (NOTA: Antes se debe iniciar sesión en SQLPLUS con sys como DBA)
 
 
-CREATE USER <user_name> IDENTIFIED BY <password>
+CREATE USER <user_name> IDENTIFIED BY <password_>
 QUOTA UNLIMITED ON USERS;
 
 
