@@ -231,3 +231,17 @@ CREATE SEQUENCE num_Ejemplar
  INCREMENT BY   1
  NOCACHE
  NOCYCLE;
+
+CREATE SEQUENCE num_Adqui
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+
+CREATE SEQUENCE id_tesis
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;				       
+				       
+				       
