@@ -34,7 +34,7 @@ BEGIN
       AND numEjemplar = :OLD.numEjemplar;
       
       IF vFechaDev > vFechaPrest THEN
-            WHILE vFechaPres < vFechaDev LOOP
+            WHILE vFechaPrest < vFechaDev LOOP
                   vMonto:=vMulta+10;
                   vDiasAtraso := vDiasAtraso+1;
                   vFechaPres := vFechaPres+1;
