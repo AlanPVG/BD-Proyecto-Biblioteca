@@ -10,7 +10,7 @@ CREATE OR REPLACE PROCEDURE spAltaLibro(
 AS
 BEGIN
 
-      INSERT INTO libro
+      INSERT INTO libro (idMaterial,numAdqui,isbn,edicion)
       VALUES (vIdMaterial, vNumAdqui, vISBN, vEdicion);
 
 END spAltaLibro;
