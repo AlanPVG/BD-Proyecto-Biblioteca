@@ -1,8 +1,23 @@
 --Trigger que genera multas en caso de ser necesario, al realizar la devolucion de un material en prestamo
 
 CREATE OR REPLACE TRIGGER tgMulta
-AFTER DELETE ON prestamo
-FOR EACH ROW
+FOR DELETE ON prestamo
+COMPOUND TRIGGER
+      TYPE id_prestamo IS RECORD (
+            vIdLector prestamo.idLector%TYPE,
+            vIdMat prestamo.idMaterial%TYPE,
+            vNumEjemp prestamo.numEjemp%TYPE
+      );
+      
+      TYPE row_level_info IS TABLE OF id_prestamo;
+      
+      p_row_level_info  row_level_info := row_level_info();
+      
+AFTER EACH ROW IS
+BEGIN
+      
+      p_row_level_info.extend;
+      
 
 DECLARE
 
