@@ -24,3 +24,4 @@ SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables
 
 Antes de ejecutar cualquier procedimiento, (y después de haber ejecutado el script 'proyecto_ddl'), se requiere haber ejecutado el script 'cargaTipoLect'
 
+
