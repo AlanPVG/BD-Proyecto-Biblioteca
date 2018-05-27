@@ -27,7 +27,7 @@ BEGIN
       VALUES(vIdLect, vIdMat, vNumEjemp, vFechaDev);
           
       DELETE FROM prestamo
-      WHERE idMaterial = vIdMaterial
+      WHERE idMaterial = vIdMat
       AND numEjemplar = vNumEjemp;
 
 END spDevolucion;
