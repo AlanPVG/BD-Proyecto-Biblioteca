@@ -35,9 +35,9 @@ BEGIN
       
       IF vFechaDev > vFechaPrest THEN
             WHILE vFechaPrest < vFechaDev LOOP
-                  vMonto:=vMulta+10;
+                  vMonto:=vMonto+10;
                   vDiasAtraso := vDiasAtraso+1;
-                  vFechaPres := vFechaPres+1;
+                  vFechaPrest := vFechaPrest+1;
             END LOOP;
             INSERT INTO multa (idMulta, idMaterial, numEjemplar, diasAtraso, monto, liquidado)
             VALUES (id_Multa.nextval, :OLD.idMaterial, :OLD.numEjemplar, vDiasAtraso, vMonto,'no');
