@@ -15,15 +15,15 @@ BEGIN
       	SELECT fechaDevolucion
       	INTO vFechaDev
       	FROM devuelveEjem
-      	WHERE idLector = vIdLect
-      	AND idMaterial = vIdMat
-      	AND numEjemplar = vNumEjemp;
+      	WHERE idLector = :OLD.idLector
+      	AND idMaterial = :OLD.idMaterial
+      	AND numEjemplar = :OLD.numEjemplar;
 
 	SELECT (:OLD.fechaPrestamo - vFechaDev)
 	INTO vDiasAtraso
 	FROM DUAL;
 	
-      vMonto := (:OLD.fechaPrestamo - vFechaDev)*10;
+      vMonto := vDiasAtraso*10;
       
       UPDATE ejemplar
       SET estatus = 'disponible'
