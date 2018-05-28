@@ -19,7 +19,7 @@ BEGIN
       	AND idMaterial = :OLD.idMaterial
       	AND numEjemplar = :OLD.numEjemplar;
 
-	SELECT (:OLD.fechaPrestamo - vFechaDev)
+	SELECT (vFechaDev - :OLD.fechaVencimiento)
 	INTO vDiasAtraso
 	FROM DUAL;
 	
