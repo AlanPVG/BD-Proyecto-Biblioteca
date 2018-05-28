@@ -38,9 +38,19 @@ SHOW ERRORS
 
 
 CREATE OR REPLACE TRIGGER tgMulta
-AFTER DELETE ON prestamo
-FOR EACH ROW
+FOR DELETE ON prestamo
+COMPOUND TRIGGER
 
+TYPE	fecha_prest_t IS TABLE OF prestamo.fechaPrestamo%TYPE;
+fechaPrestamo_T		fecha_prest_t;
+
+BEFORE STATEMENT IS
+
+BEGIN
+	SELECT fechaPrestamo
+	BULK COLLECT INTO fechaPrestamo_T
+	FROM prestamo
+	WHERE 
 DECLARE
 
       vFechaPrest prestamo.fechaPrestamo%TYPE;
@@ -48,7 +58,23 @@ DECLARE
       vMonto NUMBER;
       vDiasAtraso NUMBER;
 BEGIN
-      vDiasAtraso:=ftDiasAtraso(:OLD.idLector,:OLD.idMaterial,:OLD.numEjemplar);
+      	SELECT fechaPrestamo
+      	INTO vFechaPrest
+      	FROM prestamo
+      	WHERE idLector = vIdLect
+      	AND idMaterial = vIdMat
+      	AND numEjemplar = vNumEjemp;
+      
+      	SELECT fechaDevolucion
+      	INTO vFechaDev
+      	FROM devuelveEjem
+      	WHERE idLector = vIdLect
+      	AND idMaterial = vIdMat
+      	AND numEjemplar = vNumEjemp;
+
+	SELECT (vFechaPrest - vFechaDev)
+	INTO vDiasAtraso
+	FROM DUAL;
       vMonto := vDiasAtraso*10;
       
       UPDATE ejemplar
