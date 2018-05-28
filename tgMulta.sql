@@ -1,7 +1,7 @@
 --Trigger que genera multas en caso de ser necesario, al realizar la devolucion de un material en prestamo
 
 CREATE OR REPLACE TRIGGER tgMulta
-AFTER DELETE ON prestamo
+BEFORE DELETE ON prestamo
 FOR EACH ROW
 
 DECLARE
