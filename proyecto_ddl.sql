@@ -1,8 +1,7 @@
 CREATE TABLE tipoLector(
 	tipoLect VARCHAR2(15) PRIMARY KEY,
-	CONSTRAINT CK_tipoLect CHECK (tipoLect IN ('estudiante','profesor','investigador')),
 	limiteMaterial NUMBER(2) NOT NULL,
-	refrendos NUMBER(2) NOT NULL,
+	refrendos NUMBER(1) NOT NULL,
 	diasPrestamo NUMBER(2) NOT NULL
 );
 
@@ -11,31 +10,30 @@ CREATE TABLE tipoLector(
 
 CREATE TABLE lector(
 	idLector NUMBER(3) PRIMARY KEY,
-	nomLect VARCHAR2(15) NOT NULL,
-	apPatLect VARCHAR2(15) NOT NULL,
-	apMatLect VARCHAR2(15),
-	calle VARCHAR(20) NOT NULL,
-	calleNum NUMBER(4) NOT NULL,
-	colonia VARCHAR2(15) NOT NULL,
-	deleg VARCHAR2(15) NOT NULL,
+	nomLect VARCHAR2(20) NOT NULL,
+	apPatLect VARCHAR2(20) NOT NULL,
+	apMatLect VARCHAR2(20),
+	calle VARCHAR2(20) NOT NULL,
+	numero NUMBER(4) NOT NULL,
+	colonia VARCHAR2(30) NOT NULL,
+	deleg VARCHAR2(20) NOT NULL,
 	codPost NUMBER(5) NOT NULL,
 	telefono NUMBER(10) NOT NULL,
-	adeudo NUMBER,
-	fechaAlta DATE DEFAULT SYSDATE,
-	fechaVigencia DATE DEFAULT add_months(SYSDATE,12)-1,
+	adeudo NUMBER(6),
+	fechaAlta DATE DEFAULT SYSDATE NOT NULL,
+	fechaVigencia DATE DEFAULT add_months(SYSDATE,12)-1 NOT NULL,
 	tipoLect VARCHAR2(15) NOT NULL,
 	CONSTRAINT FK_tipoLect FOREIGN KEY (tipoLect)
 	REFERENCES tipoLector
 );
-
 
 --===============================================================
 --===============================================================
 
 CREATE TABLE material(
 	idMaterial NUMBER(4) PRIMARY KEY,
-	titulo VARCHAR2(20) NOT NULL,
-	tema VARCHAR2(20) NOT NULL,
+	titulo VARCHAR2(40) NOT NULL,
+	tema VARCHAR2(30) NOT NULL,
 	coleccion VARCHAR2(20) NOT NULL,
 	clasificacion VARCHAR2(20) NOT NULL
 );
@@ -47,8 +45,7 @@ CREATE TABLE tipoMaterial(
 	idMaterial NUMBER(4) PRIMARY KEY,
 	tipoMaterial VARCHAR2(10) NOT NULL,
 	CONSTRAINT FK_idMaterial FOREIGN KEY (idMaterial)
-	REFERENCES material ON DELETE CASCADE,
-	CONSTRAINT CK_tipoMaterial CHECK (tipoMaterial IN ('libro','tesis'))
+	REFERENCES material ON DELETE CASCADE
 );
 
 --===============================================================
@@ -76,14 +73,14 @@ CREATE TABLE directorTesis(
 --===============================================================
 --===============================================================
 	
-CREATE TABLE libroAutor(
+CREATE TABLE materialAutor(
 	idMaterial NUMBER(4) NOT NULL,
 	claveAutor NUMBER(3) NOT NULL,
 	CONSTRAINT FK_idMaterial1 FOREIGN KEY (idMaterial)
 	REFERENCES material,
 	CONSTRAINT FK_claveAutor FOREIGN KEY (claveAutor)
 	REFERENCES autor,
-	CONSTRAINT PK_libroAutor PRIMARY KEY (idMaterial, claveAutor)
+	CONSTRAINT PK_materialAutor PRIMARY KEY (idMaterial, claveAutor)
 );
 
 --===============================================================
@@ -91,11 +88,13 @@ CREATE TABLE libroAutor(
 
 CREATE TABLE libro(
 	idMaterial NUMBER(4) PRIMARY KEY,
-	numAdqui NUMBER(4) UNIQUE,
+	numAdqui NUMBER(4) NOT NULL,
 	isbn NUMBER(13) NOT NULL,
 	edicion NUMBER(2) NOT NULL,
 	CONSTRAINT FK_idMaterial2 FOREIGN KEY (idMaterial)
-	REFERENCES tipoMaterial ON DELETE CASCADE
+	REFERENCES tipoMaterial ON DELETE CASCADE,
+	CONSTRAINT AK_numAdqui UNIQUE(numAdqui),
+	CONSTRAINT AK_isbn UNIQUE(isbn)
 );
 
 --===============================================================
@@ -103,14 +102,15 @@ CREATE TABLE libro(
 
 CREATE TABLE tesis(
 	idMaterial NUMBER(4) PRIMARY KEY,
-	idTesis NUMBER(3) UNIQUE,
-	anioPublic NUMBER(4),
+	idTesis NUMBER(3) NOT NULL,
+	anioPublic NUMBER(4) NOT NULL,
 	carrera VARCHAR2(30) NOT NULL,
 	idDirector NUMBER(3) NOT NULL,
 	CONSTRAINT FK_idMaterial3 FOREIGN KEY (idMaterial)
 	REFERENCES tipoMaterial ON DELETE CASCADE,
 	CONSTRAINT FK_idDirector FOREIGN KEY (idDirector)
-	REFERENCES directorTesis
+	REFERENCES directorTesis,
+	CONSTRAINT AK_idTesis UNIQUE(idTesis)
 );
 
 --===============================================================
@@ -118,12 +118,13 @@ CREATE TABLE tesis(
 
 CREATE TABLE ejemplar(
 	idMaterial NUMBER(4) NOT NULL,
-	numEjemplar NUMBER(2) UNIQUE,
+	numEjemplar NUMBER(2) NOT NULL,
 	estatus VARCHAR2(10) NOT NULL,
 	CONSTRAINT CK_estatus CHECK (estatus IN('disponible','prestamo','no sale','mantenimiento')),
 	CONSTRAINT FK_idMaterial4 FOREIGN KEY (idMaterial)
 	REFERENCES material ON DELETE CASCADE,
-	CONSTRAINT PK_ejemplar PRIMARY KEY(idMaterial, numEjemplar)
+	CONSTRAINT PK_ejemplar PRIMARY KEY(idMaterial, numEjemplar),
+	CONSTRAINT AK_numEjemplar UNIQUE(numEjemplar)
 );
 
 --===============================================================
@@ -133,7 +134,7 @@ CREATE TABLE prestamo(
 	idLector NUMBER(3) NOT NULL,
 	idMaterial NUMBER(4) NOT NULL,
 	numEjemplar NUMBER(2) NOT NULL,
-	fechaPrestamo DATE DEFAULT SYSDATE,
+	fechaPrestamo DATE DEFAULT SYSDATE NOT NULL,
 	fechaVencimiento DATE,	
 	numRefrendos NUMBER(1) NOT NULL,
 	CONSTRAINT FK_idLector FOREIGN KEY (idLector)
@@ -149,7 +150,7 @@ CREATE TABLE prestamo(
 CREATE TABLE multa(
 	idMulta NUMBER(2) PRIMARY KEY,
 	diasAtraso NUMBER(3) NOT NULL,
-	monto NUMBER(6,2) NOT NULL,
+	monto NUMBER(5) NOT NULL,
 	liquidado CHAR(2) NOT NULL,
 	idMaterial NUMBER(4) NOT NULL,
 	numEjemplar NUMBER(2) NOT NULL,
@@ -164,7 +165,7 @@ CREATE TABLE multa(
 CREATE TABLE adquiereMulta(
 	idLector NUMBER(3) NOT NULL,
 	idMulta NUMBER(2) NOT NULL,
-	fechaMult DATE NOT NULL,
+	fechaMult DATE DEFAULT SYSDATE NOT NULL,
 	CONSTRAINT FK_idLector1 FOREIGN KEY (idLector)
 	REFERENCES lector,
 	CONSTRAINT FK_idMulta FOREIGN KEY (idMulta)
@@ -179,7 +180,7 @@ CREATE TABLE devuelveEjem(
 	idLector NUMBER(3) NOT NULL,
 	idMaterial NUMBER(4) NOT NULL,
 	numEjemplar NUMBER(2) NOT NULL,
-	fechaDevolucion DATE NOT NULL,
+	fechaDevolucion DATE DEFAULT SYSDATE NOT NULL,
 	CONSTRAINT FK_idLector2 FOREIGN KEY (idLector)
 	REFERENCES lector,
 	CONSTRAINT FK_MatEjem2 FOREIGN KEY (idMaterial, numEjemplar)
@@ -242,6 +243,6 @@ CREATE SEQUENCE id_tesis
  START WITH     1
  INCREMENT BY   1
  NOCACHE
- NOCYCLE;				       
-				       
-				       
+ NOCYCLE;
+
+ 

@@ -12,9 +12,7 @@ QUOTA UNLIMITED ON USERS;
 
 Se debe otorgar al usuario los privilegios necesarios
 
-
-GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE TRIGGER, CREATE PROCEDURE TO <user_name>  
-
+GRANT CONNECT, RESOURCE, CREATE SESSION, CREATE VIEW, CREATE ANY INDEX TO <user_name>;
 
 En dado caso de que se desee o necesite eliminar todas las tablas creadas, se puede emplear la siguiente instrucción para copiar el conjunto de comandos resultantes y pegarlos en la consola de SQLPLUS para que se ejecute:
 
