@@ -4,7 +4,7 @@ CREATE OR REPLACE PROCEDURE spPrestamo(
 	vIdLect prestamo.idLector%TYPE,
 	vIdMat prestamo.idMaterial%TYPE,
 	vNumEjemp prestamo.numEjemplar%TYPE,
-	vFechaPrest prestamo.fechaPrestamo%TYPE
+	vFechaPrest DATE
 )
 AS 
 	vNumPrest NUMBER(2);
