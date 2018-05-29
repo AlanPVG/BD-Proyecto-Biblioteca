@@ -149,28 +149,18 @@ CREATE TABLE prestamo(
 
 CREATE TABLE multa(
 	idMulta NUMBER(2) PRIMARY KEY,
+	idLector NUMBER(3) NOT NULL,
 	diasAtraso NUMBER(3) NOT NULL,
-	monto NUMBER(5) NOT NULL,
+	fechaMult DATE DEFAULT SYSDATE NOT NULL,
+	monto NUMBER(6,2) NOT NULL,
 	liquidado CHAR(2) NOT NULL,
 	idMaterial NUMBER(4) NOT NULL,
 	numEjemplar NUMBER(2) NOT NULL,
+	CONSTRAINT FK_idLector3 FOREIGN KEY (idLector)
+	REFERENCES lector ON DELETE CASCADE,
 	CONSTRAINT FK_MatEjem1 FOREIGN KEY (idMaterial, numEjemplar)
 	REFERENCES ejemplar,
 	CONSTRAINT CK_liquidado CHECK (liquidado IN('si','no'))
-);
-
---===============================================================
---===============================================================
-
-CREATE TABLE adquiereMulta(
-	idLector NUMBER(3) NOT NULL,
-	idMulta NUMBER(2) NOT NULL,
-	fechaMult DATE DEFAULT SYSDATE NOT NULL,
-	CONSTRAINT FK_idLector1 FOREIGN KEY (idLector)
-	REFERENCES lector,
-	CONSTRAINT FK_idMulta FOREIGN KEY (idMulta)
-	REFERENCES multa,
-	CONSTRAINT PK_adquiereMult PRIMARY KEY (idLector, idMulta)
 );
 
 --===============================================================
