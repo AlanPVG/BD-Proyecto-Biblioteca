@@ -19,17 +19,22 @@ BEGIN
       	AND idMaterial = :OLD.idMaterial
       	AND numEjemplar = :OLD.numEjemplar;
 	
-	vDiasAtraso:=CEIL((vFechaDev - :OLD.fechaVencimiento));
+	vFechaPrest := :OLD.fechaPrestamo;
 	
-      	vMonto := vDiasAtraso*10;
+	IF vFechaPrest < vFechaDev THEN
+	
+		vDiasAtraso:=CEIL((vFechaDev - :OLD.fechaVencimiento));
+	
+      		vMonto := vDiasAtraso*10;
       
-      	UPDATE ejemplar
-      	SET estatus = 'disponible'
-      	WHERE idMaterial = :OLD.idMaterial
-      	AND numEjemplar = :OLD.numEjemplar;
+      		UPDATE ejemplar
+      		SET estatus = 'disponible'
+      		WHERE idMaterial = :OLD.idMaterial
+      		AND numEjemplar = :OLD.numEjemplar;
 
-            INSERT INTO multa (idMulta, idMaterial, numEjemplar, diasAtraso, monto, liquidado)
-            VALUES (id_Multa.nextval, :OLD.idMaterial, :OLD.numEjemplar, vDiasAtraso, vMonto,'no');
+      	    	INSERT INTO multa (idMulta, idMaterial, numEjemplar, diasAtraso, monto, liquidado)
+            	VALUES (id_Multa.nextval, :OLD.idMaterial, :OLD.numEjemplar, vDiasAtraso, vMonto,'no');
+	END IF;
 
 END tgMulta;
 /
