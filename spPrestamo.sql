@@ -31,8 +31,10 @@ BEGIN
 	FROM tipoLector
 	WHERE tipoLect=vTipo;
 
-	vFVencimiento:=CEIL((vFechaPrest+vDiasPrestamo));
-
+	SELECT(vFechaPrest+vDiasPrestamo)
+	INTO vFVencimiento
+	FROM DUAL;
+	
 	SELECT COUNT(*)
 	INTO vNumPrest
 	FROM prestamo
