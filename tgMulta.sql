@@ -6,7 +6,6 @@ FOR EACH ROW
 
 DECLARE
 
-      vFechaPrest prestamo.fechaPrestamo%TYPE;
       vFechaDev devuelveEjem.fechaDevolucion%TYPE;
       vMonto NUMBER;
       vDiasAtraso NUMBER;
@@ -18,10 +17,9 @@ BEGIN
       	WHERE idLector = :OLD.idLector
       	AND idMaterial = :OLD.idMaterial
       	AND numEjemplar = :OLD.numEjemplar;
+
 	
-	vFechaPrest := :OLD.fechaPrestamo;
-	
-	IF vFechaPrest < vFechaDev THEN
+	IF :OLD.fechaVencimiento < vFechaDev THEN
 	
 		vDiasAtraso:=CEIL((vFechaDev - :OLD.fechaVencimiento));
 	
