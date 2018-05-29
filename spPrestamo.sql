@@ -75,20 +75,20 @@ BEGIN
 		WHERE idLector=vIdLect
 		AND idMaterial=vIdMat
 		AND numEjemplar=vNumEjemp;
-
-		IF vNumRef < vRef  AND vFVenc = vFechaPrest THEN
-			UPDATE prestamo
-			SET fechaPrestamo=vFechaPrest, fechaVencimiento=vFVencimiento, numRefrendos=numRefrendos+1
-			WHERE idLector=vIdLect
-			AND idMaterial=vIdMat
-			AND numEjemplar=vNumEjemp;
+		
+		IF vFVenc = vFechaPrest THEN
+			IF vNumRef < vRef  THEN
+				UPDATE prestamo
+				SET fechaPrestamo=vFechaPrest, fechaVencimiento=vFVencimiento, numRefrendos=numRefrendos+1
+				WHERE idLector=vIdLect
+				AND idMaterial=vIdMat
+				AND numEjemplar=vNumEjemp;
+			ELSE
+				RAISE_APPLICATION_ERROR(-20010,'Solo se permiten '||vRef||' refrendos por ejemplar como maximo para cada '||vTipo||'. El '||vTipo||' ya cuenta con el numero maximo de refrendos para el ejemplar con ID '||vNumEjemp||' del material con ID '||vIdMat);	
+			END IF;
 			
-		ELSIF vNumRef < vRef  AND vFVenc > vFechaPrest THEN
-
+		ELSIF vFVenc > vFechaPrest THEN
 			RAISE_APPLICATION_ERROR(-20025,'No se pueden realizar refrendos antes de la fecha de vencimiento del prestamo en curso. Se podra refrendar el material hasta '||vFVenc);	
-
-		ELSIF vNumRef >= vRef THEN 
-			RAISE_APPLICATION_ERROR(-20010,'Solo se permiten '||vRef||' refrendos por ejemplar como maximo para cada '||vTipo||'. El '||vTipo||' ya cuenta con el numero maximo de refrendos para el ejemplar con ID '||vNumEjemp||' del material con ID '||vIdMat);	
 		END IF;
 	END IF;
 
