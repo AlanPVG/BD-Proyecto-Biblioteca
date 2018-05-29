@@ -10,7 +10,7 @@ AS
 BEGIN
 
       INSERT INTO libro (idMaterial,numAdqui,isbn,edicion)
-      VALUES (vIdMaterial, num_Adqui.nextval, vISBN, vEdicion);
+      VALUES (vIdMaterial, num_Adqui.nextval-1, vISBN, vEdicion);
 
 END spAltaLibro;
 /

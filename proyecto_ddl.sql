@@ -19,7 +19,7 @@ CREATE TABLE lector(
 	deleg VARCHAR2(20) NOT NULL,
 	codPost NUMBER(5) NOT NULL,
 	telefono NUMBER(10) NOT NULL,
-	adeudo NUMBER(6),
+	adeudo NUMBER(6) DEFAULT 0 NOT NULL,
 	fechaAlta DATE DEFAULT SYSDATE NOT NULL,
 	fechaVigencia DATE DEFAULT add_months(SYSDATE,12)-1 NOT NULL,
 	tipoLect VARCHAR2(15) NOT NULL,
