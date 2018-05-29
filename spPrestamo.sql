@@ -4,6 +4,7 @@ CREATE OR REPLACE PROCEDURE spPrestamo(
 	vIdLect prestamo.idLector%TYPE,
 	vIdMat prestamo.idMaterial%TYPE,
 	vNumEjemp prestamo.numEjemplar%TYPE
+	vFechaPrest prestamo.fechaPrestamo%TYPE
 )
 AS 
 	vNumPrest NUMBER(2);
@@ -49,7 +50,7 @@ BEGIN
 
 	IF vNumPrest=0 AND vEstatus = 'disponible' THEN
 		INSERT INTO prestamo
-		VALUES(vIdLect,vIdMat,vNumEjemp,SYSDATE,vFVencimiento,vNumPrest);
+		VALUES(vIdLect,vIdMat,vNumEjemp,vFechaPrest,vFVencimiento,vNumPrest);
 		
 		UPDATE ejemplar
 		SET estatus='prestamo'
