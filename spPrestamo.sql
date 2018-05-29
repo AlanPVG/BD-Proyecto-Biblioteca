@@ -3,7 +3,7 @@
 CREATE OR REPLACE PROCEDURE spPrestamo(
 	vIdLect prestamo.idLector%TYPE,
 	vIdMat prestamo.idMaterial%TYPE,
-	vNumEjemp prestamo.numEjemplar%TYPE
+	vNumEjemp prestamo.numEjemplar%TYPE,
 	vFechaPrest prestamo.fechaPrestamo%TYPE
 )
 AS 
@@ -14,6 +14,7 @@ AS
 	vDiasPrestamo tipoLector.diasPrestamo%TYPE;
 	VNumRef NUMBER;
 	vEstatus ejemplar.estatus%TYPE;
+	vFVenc DATE;
 BEGIN
 
 	SELECT tipoLect
@@ -68,13 +69,25 @@ BEGIN
 		AND idMaterial=vIdMat
 		AND numEjemplar=vNumEjemp;
 		
-		IF vNumRef < vRef THEN
+		SELECT fechaVencimiento
+		INTO vFVenc
+		FROM prestamo
+		WHERE idLector=vIdLect
+		AND idMaterial=vIdMat
+		AND numEjemplar=vNumEjemp;
+
+		IF vNumRef < vRef  AND vFVenc = vFechaPrest THEN
 			UPDATE prestamo
-			SET fechaPrestamo=SYSDATE, fechaVencimiento=vFVencimiento, numRefrendos=numRefrendos+1
+			SET fechaPrestamo=vFechaPrest, fechaVencimiento=vFVencimiento, numRefrendos=numRefrendos+1
 			WHERE idLector=vIdLect
 			AND idMaterial=vIdMat
 			AND numEjemplar=vNumEjemp;
-		ELSE
+			
+		ELSIF vNumRef < vRef  AND vFVenc > vFechaPrest THEN
+
+			RAISE_APPLICATION_ERROR(-20025,'No se pueden realizar refrendos antes de la fecha de vencimiento del prestamo en curso. Se podra refrendar el material hasta '||vFVenc);	
+
+		ELSIF vNumRef >= vRef THEN 
 			RAISE_APPLICATION_ERROR(-20010,'Solo se permiten '||vRef||' refrendos por ejemplar como maximo para cada '||vTipo||'. El '||vTipo||' ya cuenta con el numero maximo de refrendos para el ejemplar con ID '||vNumEjemp||' del material con ID '||vIdMat);	
 		END IF;
 	END IF;
