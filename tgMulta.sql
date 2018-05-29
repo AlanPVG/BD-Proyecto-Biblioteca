@@ -18,17 +18,15 @@ BEGIN
       	WHERE idLector = :OLD.idLector
       	AND idMaterial = :OLD.idMaterial
       	AND numEjemplar = :OLD.numEjemplar;
-
-	SELECT CEIL((vFechaDev - :OLD.fechaVencimiento))
-	INTO vDiasAtraso
-	FROM DUAL;
 	
-      vMonto := vDiasAtraso*10;
+	vDiasAtraso:=CEIL((vFechaDev - :OLD.fechaVencimiento));
+	
+      	vMonto := vDiasAtraso*10;
       
-      UPDATE ejemplar
-      SET estatus = 'disponible'
-      WHERE idMaterial = :OLD.idMaterial
-      AND numEjemplar = :OLD.numEjemplar;
+      	UPDATE ejemplar
+      	SET estatus = 'disponible'
+      	WHERE idMaterial = :OLD.idMaterial
+      	AND numEjemplar = :OLD.numEjemplar;
 
             INSERT INTO multa (idMulta, idMaterial, numEjemplar, diasAtraso, monto, liquidado)
             VALUES (id_Multa.nextval, :OLD.idMaterial, :OLD.numEjemplar, vDiasAtraso, vMonto,'no');
