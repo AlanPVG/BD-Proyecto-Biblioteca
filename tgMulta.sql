@@ -19,7 +19,7 @@ BEGIN
       	AND idMaterial = :OLD.idMaterial
       	AND numEjemplar = :OLD.numEjemplar;
 
-	SELECT (vFechaDev - :OLD.fechaVencimiento)
+	SELECT CEIL((vFechaDev - :OLD.fechaVencimiento))
 	INTO vDiasAtraso
 	FROM DUAL;
 	
