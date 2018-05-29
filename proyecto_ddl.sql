@@ -185,7 +185,7 @@ CREATE TABLE devuelveEjem(
 	REFERENCES lector,
 	CONSTRAINT FK_MatEjem2 FOREIGN KEY (idMaterial, numEjemplar)
 	REFERENCES ejemplar,
-	CONSTRAINT PK_devEjem PRIMARY KEY (idLector, idMaterial, numEjemplar)
+	CONSTRAINT PK_devEjem PRIMARY KEY (idLector, idMaterial, numEjemplar, fechaDevolucion)
 );
 
 
