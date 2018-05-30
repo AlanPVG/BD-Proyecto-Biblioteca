@@ -25,10 +25,12 @@ CONNECT proyecto/proyecto;
 
 
 --PROCEDIMIENTOS
+@@spAltaLector.sql
 @@spAltaAutor.sql
+
 @@spAltaDirTesis.sql
 @@spAltaEjemplar.sql
-@@spAltaLector.sql
+
 @@spAltaLibro.sql
 @@spAltaMaterial.sql
 @@spAltaTesis.sql
@@ -39,8 +41,11 @@ CONNECT proyecto/proyecto;
 
 --TRIGGERS
 @@tgInsertaLibro.sql
+@@tgInsertaTesis.sql
 @@tgInsertaPrestamo.sql
 @@tgMulta.sql
 
 --Carga de datos
 @@cargaTipoLector.sql
+@@cargaDatosLectores.sql
+@@cargaDatosAutores.sql

@@ -17,7 +17,7 @@ CREATE OR REPLACE PROCEDURE spAltaLector(
 AS
 BEGIN
 	INSERT INTO lector(idLector, nomLect, apPatLect, apMatLect, calle, numero, colonia, deleg,codPost,telefono,tipoLect)
-	VALUES(id_Lector.nextval,vNomLect,vApPatLect,vApMatLect,vCalle,	vNumero,vColonia,vDeleg,vCodPost,vTelefono,vTipoLect);
+	VALUES(id_Lector.nextval-1,vNomLect,vApPatLect,vApMatLect,vCalle,	vNumero,vColonia,vDeleg,vCodPost,vTelefono,vTipoLect);
 
 END spAltaLector;
 /

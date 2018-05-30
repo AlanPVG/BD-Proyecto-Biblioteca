@@ -14,7 +14,7 @@ CREATE TABLE lector(
 	apPatLect VARCHAR2(20) NOT NULL,
 	apMatLect VARCHAR2(20),
 	calle VARCHAR2(20) NOT NULL,
-	numero NUMBER(4) NOT NULL,
+	numero NUMBER(5) NOT NULL,
 	colonia VARCHAR2(30) NOT NULL,
 	deleg VARCHAR2(20) NOT NULL,
 	codPost NUMBER(5) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE tipoMaterial(
 CREATE TABLE autor(
 	claveAutor NUMBER(3) PRIMARY KEY,
 	nomAutor VARCHAR2(15) NOT NULL,
-	apPatAutor VARCHAR2(15) NOT NULL,
+	apPatAutor VARCHAR2(15),
 	apMatAutor VARCHAR2(15),
 	nacionalidad VARCHAR2(40) NOT NULL
 );

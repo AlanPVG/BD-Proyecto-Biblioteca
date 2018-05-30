@@ -10,7 +10,7 @@ CREATE OR REPLACE PROCEDURE spAltaAutor(
 AS
 BEGIN
 	INSERT INTO autor(claveAutor,nomAutor,apPatAutor,apMatAutor,nacionalidad)
-	VALUES (clv_Autor.nextval,vNomAutor,vApPatAutor,vApMatAutor,vNacionalidad);
+	VALUES (clv_Autor.nextval-1,vNomAutor,vApPatAutor,vApMatAutor,vNacionalidad);
 	
 	COMMIT;
 
