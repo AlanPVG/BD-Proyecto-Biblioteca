@@ -38,7 +38,7 @@ BEGIN
 		WHERE idLector = :OLD.idLector;
 		
 	END IF;
-	COMMIT;
+
 END tgMulta;
 /
 SHOW ERRORS
