@@ -1,8 +1,8 @@
---Procedimiento para asignar libros a un autor de los registrados en la base de datos.
+--Procedimiento para asignar materiales a un autor de los registrados en la base de datos.
 
 CREATE OR REPLACE PROCEDURE spMaterialAutor(
-    vIdMat IN libroAutor.idMaterial%TYPE,
-    vClvAutor IN libroAutor.claveAutor%TYPE
+    vIdMat IN materialAutor.idMaterial%TYPE,
+    vClvAutor IN materialAutor.claveAutor%TYPE
 )
 
 AS
@@ -11,6 +11,6 @@ BEGIN
     INSERT INTO materialAutor(idMaterial,claveAutor)
     VALUES (vIdMat,vClvAutor);
 
-END spLibroAutor;
+END spMaterialAutor;
 /
 SHOW ERRORS
