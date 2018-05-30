@@ -8,7 +8,7 @@ CREATE OR REPLACE PROCEDURE spLibroAutor(
 AS
 BEGIN
 
-    INSERT INTO libroAutor
+    INSERT INTO libroAutor(idMaterial,claveAutor)
     VALUES (vIdMat,vClvAutor);
 
 END spLibroAutor;
