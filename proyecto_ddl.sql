@@ -123,8 +123,7 @@ CREATE TABLE ejemplar(
 	CONSTRAINT CK_estatus CHECK (estatus IN('disponible','prestamo','no sale','mantenimiento')),
 	CONSTRAINT FK_idMaterial4 FOREIGN KEY (idMaterial)
 	REFERENCES material ON DELETE CASCADE,
-	CONSTRAINT PK_ejemplar PRIMARY KEY(idMaterial, numEjemplar),
-	CONSTRAINT AK_numEjemplar UNIQUE(numEjemplar)
+	CONSTRAINT PK_ejemplar PRIMARY KEY(idMaterial, numEjemplar)
 );
 
 --===============================================================
