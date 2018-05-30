@@ -7,4 +7,8 @@ EXEC spAltaMaterial('libro', 'Diplomacia', 'Politica', 'Coleccion Especial', 'QA
 EXEC spAltaMaterial('libro', 'Los Windsor', 'Biografias', 'Coleccion Especial', 'MS357');
 EXEC spAltaMaterial('libro', 'El Ultimo Emperador', 'Autobiografia', 'Fondo Antiguo', 'JK3875');
 EXEC spAltaMaterial('libro', 'Fortunata y Jacinta', 'Novela', 'Fondo Antiguo', 'RS3258');
+EXEC spAltaMaterial('tesis', 'Academia para la Policia Federal', 'Politica', 'Tesis', 'TS2353');
+EXEC spAltaMaterial('tesis', 'Actutud de los estudiantes', 'Educacion', 'Tesis', 'TS3235');
+EXEC spAltaMaterial('tesis', 'Espacio-Tiempo', 'Fisica', 'Tesis', 'TS9438');
+EXEC spAltaMaterial('tesis', 'Accesorias mercantiles', 'Economia', 'Tesis', 'TS3258');
 COMMIT;

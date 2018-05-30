@@ -54,3 +54,6 @@ CONNECT proyecto/proyecto;
 @@cargaDatosMaterial.sql
 @@cargaDatosMaterialAutor.sql
 @@cargaDatosLibros.sql
+
+@@cargaDatosDirTesis.sql
+@@cargaDatosTesis.sql

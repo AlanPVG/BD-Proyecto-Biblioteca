@@ -67,7 +67,7 @@ CREATE TABLE directorTesis(
 	nomDirect VARCHAR2(15) NOT NULL,
 	apPatDirect VARCHAR2(15) NOT NULL,
 	apMatDirect VARCHAR2(15),
-	gradoAcad VARCHAR2(10) NOT NULL
+	gradoAcad VARCHAR2(15) NOT NULL
 );
 
 --===============================================================

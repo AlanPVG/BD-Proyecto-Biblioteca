@@ -10,7 +10,7 @@ CREATE OR REPLACE PROCEDURE spAltaEjemplar(
 AS
 BEGIN
 	INSERT INTO ejemplar
-	VALUES (vIdMat,num_Ejemplar.nextval,vEstatus);
+	VALUES (vIdMat,num_Ejemplar.nextval-1,vEstatus);
 	
 	COMMIT;	
 
