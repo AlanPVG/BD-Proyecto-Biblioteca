@@ -12,6 +12,7 @@ BEGIN
 
       INSERT INTO tesis(idMaterial,idTesis,anioPublic, carrera, idDirector)
       VALUES (vIdMat, id_tesis.nextval,vAnioPublic, vCarrera, vIdDirector);
+      COMMIT;
 END spAltaTesis;
 /
 

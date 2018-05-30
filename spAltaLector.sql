@@ -19,6 +19,7 @@ BEGIN
 	INSERT INTO lector(idLector, nomLect, apPatLect, apMatLect, calle, numero, colonia, deleg,codPost,telefono,tipoLect)
 	VALUES(id_Lector.nextval-1,vNomLect,vApPatLect,vApMatLect,vCalle,	vNumero,vColonia,vDeleg,vCodPost,vTelefono,vTipoLect);
 
+	COMMIT;
 END spAltaLector;
 /
 SHOW ERRORS
