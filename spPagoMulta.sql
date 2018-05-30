@@ -22,12 +22,12 @@ BEGIN
             
     ELSIF vPago = vMonto THEN
             UPDATE multa
-            SET monto = vMonto - vPago, liquidado ='si'
+            SET monto = vMonto - vPago, liquidado = 'si'
             WHERE idMulta = vIdMulta;
             
     ELSIF vPago > vMonto THEN
            UPDATE multa
-           SET monto = 0
+           SET monto = 0, liquidado = 'si'
            WHERE idMulta = vIdMulta;
            
            vCambio := vPago-vMonto;
