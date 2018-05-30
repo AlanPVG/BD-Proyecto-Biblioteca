@@ -32,8 +32,13 @@ BEGIN
 		
       	    	INSERT INTO multa (idMulta, idLector, idMaterial, numEjemplar, diasAtraso, fechaMult, monto, liquidado)
             	VALUES (id_Multa.nextval, :OLD.idLector, :OLD.idMaterial, :OLD.numEjemplar, vDiasAtraso, vFechaDev, vMonto,'no');
+		
+		UPDATE lector
+		SET adeudo = vMonto
+		WHERE idLector = :OLD.idLector;
+		
 	END IF;
-
+	COMMIT;
 END tgMulta;
 /
 SHOW ERRORS
