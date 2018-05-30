@@ -146,16 +146,16 @@ CREATE TABLE prestamo(
 
 --===============================================================
 --===============================================================
-
+				     
 CREATE TABLE multa(
 	idMulta NUMBER(2) PRIMARY KEY,
 	idLector NUMBER(3) NOT NULL,
+	idMaterial NUMBER(4) NOT NULL,
+	numEjemplar NUMBER(2) NOT NULL,
 	diasAtraso NUMBER(3) NOT NULL,
 	fechaMult DATE DEFAULT SYSDATE NOT NULL,
 	monto NUMBER(6,2) NOT NULL,
 	liquidado CHAR(2) NOT NULL,
-	idMaterial NUMBER(4) NOT NULL,
-	numEjemplar NUMBER(2) NOT NULL,
 	CONSTRAINT FK_idLector3 FOREIGN KEY (idLector)
 	REFERENCES lector ON DELETE CASCADE,
 	CONSTRAINT FK_MatEjem1 FOREIGN KEY (idMaterial, numEjemplar)
