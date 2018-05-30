@@ -3,6 +3,7 @@
 
 CREATE OR REPLACE PROCEDURE spAltaEjemplar(
 	vIdMat ejemplar.idMaterial%TYPE,
+	vNumEjemp ejemplar.numEjemplar%TYPE,
 	vEstatus ejemplar.estatus%TYPE
 )
 
@@ -10,7 +11,7 @@ CREATE OR REPLACE PROCEDURE spAltaEjemplar(
 AS
 BEGIN
 	INSERT INTO ejemplar
-	VALUES (vIdMat,num_Ejemplar.nextval-1,vEstatus);
+	VALUES (vIdMat,vNumEjemp,vEstatus);
 	
 	COMMIT;	
 
