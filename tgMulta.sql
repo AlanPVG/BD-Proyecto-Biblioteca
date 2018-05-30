@@ -30,8 +30,8 @@ BEGIN
 	
       		vMonto := vDiasAtraso*10;
 		
-      	    	INSERT INTO multa (idMulta, idMaterial, numEjemplar, diasAtraso, monto, liquidado)
-            	VALUES (id_Multa.nextval, :OLD.idMaterial, :OLD.numEjemplar, vDiasAtraso, vMonto,'no');
+      	    	INSERT INTO multa (idMulta, idLector, idMaterial, numEjemplar, diasAtraso, fechaMult, monto, liquidado)
+            	VALUES (id_Multa.nextval, :OLD.idLector, :OLD.idMaterial, :OLD.numEjemplar, vDiasAtraso, vFechaDev, vMonto,'no');
 	END IF;
 
 END tgMulta;
