@@ -10,6 +10,8 @@ BEGIN
 
     INSERT INTO materialAutor(idMaterial,claveAutor)
     VALUES (vIdMat,vClvAutor);
+    
+    COMMIT;
 
 END spMaterialAutor;
 /
