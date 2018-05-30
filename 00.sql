@@ -57,3 +57,6 @@ CONNECT proyecto/proyecto;
 @@cargaDatosDirTesis.sql
 @@cargaDatosTesis.sql
 @@cargaDatosEjemplar.sql
+
+SET SERVEROUTPUT ON;
+SET LINE 250;
