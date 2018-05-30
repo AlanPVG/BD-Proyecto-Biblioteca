@@ -89,7 +89,7 @@ CREATE TABLE materialAutor(
 CREATE TABLE libro(
 	idMaterial NUMBER(4) PRIMARY KEY,
 	numAdqui NUMBER(4) NOT NULL,
-	isbn NUMBER(13) NOT NULL,
+	isbn CHAR(13) NOT NULL,
 	edicion NUMBER(2) NOT NULL,
 	CONSTRAINT FK_idMaterial2 FOREIGN KEY (idMaterial)
 	REFERENCES tipoMaterial ON DELETE CASCADE,
@@ -119,7 +119,7 @@ CREATE TABLE tesis(
 CREATE TABLE ejemplar(
 	idMaterial NUMBER(4) NOT NULL,
 	numEjemplar NUMBER(2) NOT NULL,
-	estatus VARCHAR2(10) NOT NULL,
+	estatus VARCHAR2(15) NOT NULL,
 	CONSTRAINT CK_estatus CHECK (estatus IN('disponible','prestamo','no sale','mantenimiento')),
 	CONSTRAINT FK_idMaterial4 FOREIGN KEY (idMaterial)
 	REFERENCES material ON DELETE CASCADE,
