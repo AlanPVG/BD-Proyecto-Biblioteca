@@ -27,12 +27,14 @@ CONNECT proyecto/proyecto;
 --PROCEDIMIENTOS
 @@spAltaLector.sql
 @@spAltaAutor.sql
+@@spAltaMaterial.sql
+@@spAltaLibro.sql
+
 
 @@spAltaDirTesis.sql
 @@spAltaEjemplar.sql
 
-@@spAltaLibro.sql
-@@spAltaMaterial.sql
+
 @@spAltaTesis.sql
 @@spDevolucion.sql
 @@spMaterialAutor.sql
@@ -49,3 +51,6 @@ CONNECT proyecto/proyecto;
 @@cargaTipoLector.sql
 @@cargaDatosLectores.sql
 @@cargaDatosAutores.sql
+@@cargaDatosMaterial.sql
+@@cargaDatosMaterialAutor.sql
+@@cargaDatosLibros.sql

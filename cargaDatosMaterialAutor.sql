@@ -1,0 +1,10 @@
+EXEC spMaterialAutor(1,1);
+EXEC spMaterialAutor(2,1);
+EXEC spMaterialAutor(3,2);
+EXEC spMaterialAutor(4,3);
+EXEC spMaterialAutor(5,4);
+EXEC spMaterialAutor(6,5);
+EXEC spMaterialAutor(7,6);
+EXEC spMaterialAutor(8,7);
+EXEC spMaterialAutor(9,8);
+COMMIT;

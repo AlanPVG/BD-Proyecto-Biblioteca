@@ -1,0 +1,10 @@
+EXEC spAltaMaterial('libro', 'Don Quijote de la Mancha I', 'Caballeresco', 'Coleccion General', 'HG4025');
+EXEC spAltaMaterial('libro', 'Don Quijote de la Mancha II', 'Caballeresco', 'Coleccion General', 'HG4025');
+EXEC spAltaMaterial('libro', 'Historias de Nueva Orleans', 'Novela', 'Coleccion General', 'PS34235');
+EXEC spAltaMaterial('libro', 'El Principito', 'Aventura', 'Coleccion General', 'PS5434');
+EXEC spAltaMaterial('libro', 'El Principe', 'Politica', 'Coleccion Especial', 'QR3445');
+EXEC spAltaMaterial('libro', 'Diplomacia', 'Politica', 'Coleccion Especial', 'QA1234');
+EXEC spAltaMaterial('libro', 'Los Windsor', 'Biografias', 'Coleccion Especial', 'MS357');
+EXEC spAltaMaterial('libro', 'El Ultimo Emperador', 'Autobiografia', 'Fondo Antiguo', 'JK3875');
+EXEC spAltaMaterial('libro', 'Fortunata y Jacinta', 'Novela', 'Fondo Antiguo', 'RS3258');
+COMMIT;
