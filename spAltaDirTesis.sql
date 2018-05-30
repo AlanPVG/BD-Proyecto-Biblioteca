@@ -12,6 +12,7 @@ BEGIN
     
      INSERT INTO directorTesis
      VALUES(id_Director.nextval, vNomDir, vApPatDir, vApMatDir, vGradoAcad);
+     COMMIT;
      
 END spAltaDirTesis;
 /
