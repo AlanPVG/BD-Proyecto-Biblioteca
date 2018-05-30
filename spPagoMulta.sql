@@ -1,6 +1,6 @@
 --Procedimiento para realizar pago de una multa
 
-CREATE OR REPLACE spPagoMulta(
+CREATE OR REPLACE PROCEDURE spPagoMulta(
       vIdMulta IN multa.idMulta%TYPE,
       vPago IN NUMBER
 )
