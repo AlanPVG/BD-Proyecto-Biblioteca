@@ -23,6 +23,8 @@ BEGIN
       WHERE idMaterial = vIdMat
       AND numEjemplar = vNumEjemp;
 
+      COMMIT;
+      
 END spDevolucion;
 /
 SHOW ERRORS
